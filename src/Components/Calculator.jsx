@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import '../styles/Calculator.css';  
+import React, { useState } from "react";
+import "../styles/Calculator.css";
 
 const Calculator = () => {
-  const [input1, setInput1] = useState('');
-  const [input2, setInput2] = useState('');
+  const [input1, setInput1] = useState("");
+  const [input2, setInput2] = useState("");
   const [result, setResult] = useState(null);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   const validateInputs = () => {
-    if (input1 === '' || input2 === '') {
-      setErrorMessage('Inputs cannot be empty');
+    if (input1 === "" || input2 === "") {
+      setErrorMessage("Inputs cannot be empty");
       return false;
     }
     if (isNaN(input1) || isNaN(input2)) {
-      setErrorMessage('Inputs must be valid numbers');
+      setErrorMessage("Inputs must be valid numbers");
       return false;
     }
-    setErrorMessage('');  
+    setErrorMessage("");
     return true;
   };
 
@@ -28,18 +28,18 @@ const Calculator = () => {
     let res;
 
     switch (operation) {
-      case 'add':
+      case "add":
         res = num1 + num2;
         break;
-      case 'subtract':
+      case "subtract":
         res = num1 - num2;
         break;
-      case 'multiply':
+      case "multiply":
         res = num1 * num2;
         break;
-      case 'divide':
+      case "divide":
         if (num2 === 0) {
-          setErrorMessage('Cannot divide by zero');
+          setErrorMessage("Cannot divide by zero");
           return;
         }
         res = num1 / num2;
@@ -57,19 +57,20 @@ const Calculator = () => {
         type="text"
         value={input1}
         onChange={(e) => setInput1(e.target.value)}
-        placeholder="Enter first number"
+        placeholder="Num 1"
       />
+      <br />
       <input
         type="text"
         value={input2}
         onChange={(e) => setInput2(e.target.value)}
-        placeholder="Enter second number"
+        placeholder="Num 2"
       />
       <div className="button-group">
-        <button onClick={() => calculate('add')}>+</button>
-        <button onClick={() => calculate('subtract')}>-</button>
-        <button onClick={() => calculate('multiply')}>*</button>
-        <button onClick={() => calculate('divide')}>/</button>
+        <button onClick={() => calculate("add")}>+</button>
+        <button onClick={() => calculate("subtract")}>-</button>
+        <button onClick={() => calculate("multiply")}>*</button>
+        <button onClick={() => calculate("divide")}>/</button>
       </div>
       {errorMessage && <p className="error">{errorMessage}</p>}
       {result !== null && !errorMessage && (
